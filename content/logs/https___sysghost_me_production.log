@@ -1,0 +1,15 @@
+{"name":"Log","hostname":"vultr.guest","pid":16704,"level":40,"msg":"Ghost has shut down ","time":"2020-10-05T14:11:14.551Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":3115,"level":40,"msg":"Theme's file locales/en.json not found. ","time":"2020-10-05T14:11:34.230Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":3115,"level":30,"msg":"Ghost is running in production... ","time":"2020-10-05T14:11:35.033Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":3115,"level":30,"msg":"Your site is now available on https://sysghost.me/ ","time":"2020-10-05T14:11:35.035Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":3115,"level":30,"msg":"Ctrl+C to shut down ","time":"2020-10-05T14:11:35.036Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":3115,"level":30,"msg":"Ghost boot 4.063s ","time":"2020-10-05T14:11:35.064Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":3115,"level":30,"msg":"Bootstrap client was closed. ","time":"2020-10-05T14:11:35.066Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":3115,"level":40,"msg":"Ghost has shut down ","time":"2020-10-05T14:15:19.896Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":4147,"level":40,"msg":"Theme's file locales/en.json not found. ","time":"2020-10-05T14:16:44.131Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":4147,"level":30,"msg":"Ghost is running in production... ","time":"2020-10-05T14:16:44.745Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":4147,"level":30,"msg":"Your site is now available on https://sysghost.me/ ","time":"2020-10-05T14:16:44.747Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":4147,"level":30,"msg":"Ctrl+C to shut down ","time":"2020-10-05T14:16:44.748Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":4147,"level":30,"msg":"Ghost boot 2.805s ","time":"2020-10-05T14:16:44.772Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":4147,"level":30,"msg":"Bootstrap client was closed. ","time":"2020-10-05T14:16:44.773Z","v":0}
+{"name":"Log","hostname":"vultr.guest","pid":4147,"level":40,"msg":"Ghost has shut down ","time":"2020-10-05T14:38:44.760Z","v":0}
