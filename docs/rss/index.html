@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[Shuang Song Cyber Home V2.0]]></title><description><![CDATA[Shelter Of Individual Thoughts.]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>Shuang Song Cyber Home V2.0</title><link>http://localhost:2368/</link></image><generator>Ghost 3.35</generator><lastBuildDate>Thu, 04 Feb 2021 15:05:14 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Donate me]]></title><description><![CDATA[Several ways to donate me.]]></description><link>http://localhost:2368/donate/</link><guid isPermaLink="false">5fef0c6bcf338f7333b71bef</guid><dc:creator><![CDATA[Shuang Song]]></dc:creator><pubDate>Fri, 01 Jan 2021 12:06:08 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/01/tachikoma.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><blockquote>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[Shuang Song Cyber Home V2.0]]></title><description><![CDATA[Shelter Of Individual Thoughts.]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>Shuang Song Cyber Home V2.0</title><link>http://localhost:2368/</link></image><generator>Ghost 3.35</generator><lastBuildDate>Sun, 07 Feb 2021 14:14:08 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Donate me]]></title><description><![CDATA[Several ways to donate me.]]></description><link>http://localhost:2368/donate/</link><guid isPermaLink="false">5fef0c6bcf338f7333b71bef</guid><dc:creator><![CDATA[Shuang Song]]></dc:creator><pubDate>Fri, 01 Jan 2021 12:06:08 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/01/tachikoma.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><blockquote>
 <ul>
 <li><strong>All 3rd-party payment ways available for donation</strong></li>
 </ul>
@@ -8,7 +8,61 @@
 <li><strong>Buying some ABCC tokens as a donation</strong></li>
 </ul>
 </blockquote>
-<!--kg-card-end: markdown--><!--kg-card-begin: html--><img src="http://localhost:2368/content/images/2021/01/tachikoma.jpg" alt="Donate me"><p>Send ETH to the address showed below and do not forget to attach a message of the amount of ABCC you wanna buy.</p><!--kg-card-end: html--><!--kg-card-begin: markdown--><img class="main-image" src="http://localhost:2368/content/images/2021/01/download.jpg" alt="Donate me"><!--kg-card-end: markdown--><!--kg-card-begin: markdown--><p>Current balance of ABCC token system:</p><!--kg-card-end: markdown--><!--kg-card-begin: html--><p>
+<!--kg-card-end: markdown--><!--kg-card-begin: html--><img src="http://localhost:2368/content/images/2021/01/tachikoma.jpg" alt="Donate me"><p>Send ETH to the address showed below and do not forget to attach a message of the amount of ABCC you wanna buy.</p><!--kg-card-end: html--><!--kg-card-begin: html--><div>
+    <button class="pay-button">Pay</button>
+    <div id="status"></div>
+  </div>
+  <script type="text/javascript">
+    window.addEventListener('load', async () => {
+      if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+          await ethereum.enable();
+          initPayButton()
+        } catch (err) {
+          $('#status').html('User denied account access', err)
+        }
+      } else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider)
+        initPayButton()
+      } else {
+        $('#status').html('No Metamask (or other Web3 Provider) installed')
+      }
+    })
+
+    const initPayButton = () => {
+      $('.pay-button').click(() => {
+        const paymentAddress = '0x00f8180faAE7B995d0501dC867Fe9280233347d1'
+        let amountEth = prompt('set the amount of eth you wanna send:')
+        let amountABCC = prompt('set the amount of abcc you wanna receive: (0~10)')
+
+        web3.eth.sendTransaction({
+          to: paymentAddress,
+          value: web3.toWei(amountEth, 'ether')
+        }, (err, transactionId) => {
+          if  (err) {
+            console.log('Payment failed', err)
+            $('#status').html('Payment failed')
+          } else {
+            console.log('Payment successful', transactionId)
+            $('#status').html('Payment successful')
+          }
+        })
+
+        function sendEmail() {
+            Email.send({
+                Host: "smtp.mailtrap.io",
+                Username: "5478fbf5eb197a",
+                Password: "bb8e52a1c2af90",
+                From: "66219e1c1f-b57393@inbox.mailtrap.io",
+                To: "ssprof0@gmail.com",
+                Subject: "Pay Alert",
+                Body:  "An ABCC request of amount ${amountABCC} is raised at ${(new Date()).Format('yyyy-MM-dd hh:mm:ss.S')}."
+            }).then(alert("Your ABCC request is sent. Please wait."))
+        }
+      })
+    }
+  </script><!--kg-card-end: html--><!--kg-card-begin: markdown--><img class="main-image" src="http://localhost:2368/content/images/2021/01/download.jpg" alt="Donate me"><!--kg-card-end: markdown--><!--kg-card-begin: markdown--><p>Current balance of ABCC token system:</p><!--kg-card-end: markdown--><!--kg-card-begin: html--><p>
 <script>
     var URL = "https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=0x57d8fa397c654740cfabe27054f2e9c218c5f1aa&address=0x00f8180faAE7B995d0501dC867Fe9280233347d1&tag=latest&apikey=RDZ37WJS6GI9ZAHHB2FUICQGJTWRWTQGW8"
     

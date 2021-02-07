@@ -9,7 +9,7 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=7f0e9f1256.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=4bf4f29e5b.css" />
 
     <link rel="icon" href="../favicon.png" type="image/png" />
     <link rel="canonical" href="index.html" />
@@ -23,7 +23,7 @@
     <meta property="og:url" content="http://localhost:2368/donate/" />
     <meta property="og:image" content="http://localhost:2368/content/images/2021/01/tachikoma.jpg" />
     <meta property="article:published_time" content="2021-01-01T12:06:08.000Z" />
-    <meta property="article:modified_time" content="2021-01-28T11:27:38.000Z" />
+    <meta property="article:modified_time" content="2021-02-07T14:03:59.000Z" />
     <meta property="article:publisher" content="https://www.facebook.com/shuang.song.1610/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Donate me" />
@@ -60,7 +60,7 @@
     "headline": "Donate me",
     "url": "http://localhost:2368/donate/",
     "datePublished": "2021-01-01T12:06:08.000Z",
-    "dateModified": "2021-01-28T11:27:38.000Z",
+    "dateModified": "2021-02-07T14:03:59.000Z",
     "image": {
         "@type": "ImageObject",
         "url": "http://localhost:2368/content/images/2021/01/tachikoma.jpg",
@@ -75,7 +75,7 @@
 }
     </script>
 
-    <script defer src="../public/members.js%3Fv=7f0e9f1256"></script>
+    <script defer src="../public/members.js%3Fv=4bf4f29e5b"></script>
     <meta name="generator" content="Ghost 3.35" />
     <link rel="alternate" type="application/rss+xml" title="Shuang Song Cyber Home V2.0" href="../rss/index.html" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -120,6 +120,28 @@
     color: black;
   }
   
+    
+  .pay-button {
+    width: 100px;
+    height: 40px;
+    background-color: black; 
+    border: 2px solid #555555;
+    border-radius: 10%;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Roboto Mono', RobotoMono-SemiBold;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .pay-button:hover {
+    background-color: white;
+    color: black;
+  }
 </style>
 
 <style>
@@ -241,7 +263,61 @@
 <li><strong>Buying some ABCC tokens as a donation</strong></li>
 </ul>
 </blockquote>
-<!--kg-card-end: markdown--><!--kg-card-begin: html--><p>Send ETH to the address showed below and do not forget to attach a message of the amount of ABCC you wanna buy.</p><!--kg-card-end: html--><!--kg-card-begin: markdown--><img class= "main-image" src = "../content/images/2021/01/download.jpg"><!--kg-card-end: markdown--><!--kg-card-begin: markdown--><p>Current balance of ABCC token system:</p><!--kg-card-end: markdown--><!--kg-card-begin: html--><p>
+<!--kg-card-end: markdown--><!--kg-card-begin: html--><p>Send ETH to the address showed below and do not forget to attach a message of the amount of ABCC you wanna buy.</p><!--kg-card-end: html--><!--kg-card-begin: html--><div>
+    <button class="pay-button">Pay</button>
+    <div id="status"></div>
+  </div>
+  <script type="text/javascript">
+    window.addEventListener('load', async () => {
+      if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+          await ethereum.enable();
+          initPayButton()
+        } catch (err) {
+          $('#status').html('User denied account access', err)
+        }
+      } else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider)
+        initPayButton()
+      } else {
+        $('#status').html('No Metamask (or other Web3 Provider) installed')
+      }
+    })
+
+    const initPayButton = () => {
+      $('.pay-button').click(() => {
+        const paymentAddress = '0x00f8180faAE7B995d0501dC867Fe9280233347d1'
+        let amountEth = prompt('set the amount of eth you wanna send:')
+        let amountABCC = prompt('set the amount of abcc you wanna receive: (0~10)')
+
+        web3.eth.sendTransaction({
+          to: paymentAddress,
+          value: web3.toWei(amountEth, 'ether')
+        }, (err, transactionId) => {
+          if  (err) {
+            console.log('Payment failed', err)
+            $('#status').html('Payment failed')
+          } else {
+            console.log('Payment successful', transactionId)
+            $('#status').html('Payment successful')
+          }
+        })
+
+        function sendEmail() {
+            Email.send({
+                Host: "smtp.mailtrap.io",
+                Username: "5478fbf5eb197a",
+                Password: "bb8e52a1c2af90",
+                From: "66219e1c1f-b57393@inbox.mailtrap.io",
+                To: "ssprof0@gmail.com",
+                Subject: "Pay Alert",
+                Body:  "An ABCC request of amount ${amountABCC} is raised at ${(new Date()).Format('yyyy-MM-dd hh:mm:ss.S')}."
+            }).then(alert("Your ABCC request is sent. Please wait."))
+        }
+      })
+    }
+  </script><!--kg-card-end: html--><!--kg-card-begin: markdown--><img class= "main-image" src = "../content/images/2021/01/download.jpg"><!--kg-card-end: markdown--><!--kg-card-begin: markdown--><p>Current balance of ABCC token system:</p><!--kg-card-end: markdown--><!--kg-card-begin: html--><p>
 <script>
     var URL = "https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=0x57d8fa397c654740cfabe27054f2e9c218c5f1aa&address=0x00f8180faAE7B995d0501dC867Fe9280233347d1&tag=latest&apikey=RDZ37WJS6GI9ZAHHB2FUICQGJTWRWTQGW8"
     
@@ -405,7 +481,7 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="../assets/built/jquery.fitvids.js%3Fv=7f0e9f1256"></script>
+    <script type="text/javascript" src="../assets/built/jquery.fitvids.js%3Fv=4bf4f29e5b"></script>
 
 
     <script>
